@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'game/game_lesson_01.dart';
+import 'game/game_01.dart';
 import 'my_game.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -22,7 +22,7 @@ class  HomeWidget extends StatelessWidget {
       body: Center(
         child: ElevatedButton(onPressed: (){
           Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-            return MyGameWidget(game: GameLesson01());
+            return MyGameWidget(game: Game01());
           }));
         }, child: Text('start game')),
       ),

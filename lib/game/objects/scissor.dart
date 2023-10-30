@@ -6,7 +6,8 @@ import 'rock.dart';
 
 class Scissor extends BodyComponent with ContactCallbacks {
   final Vector2 startPosition;
-  Scissor(this.startPosition);
+  final Vector2 linearVelocity;
+  Scissor(this.startPosition, this.linearVelocity);
 
   ObjectState state = ObjectState.normal;
 
@@ -62,7 +63,7 @@ class Scissor extends BodyComponent with ContactCallbacks {
 
     return world.createBody(bodyDef)
       ..createFixture(fixtureDef)
-      ..angularVelocity = radians(180)..linearVelocity = Vector2(2, 6);
+      ..linearVelocity = linearVelocity;
   }
 
   @override

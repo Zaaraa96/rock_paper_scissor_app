@@ -8,7 +8,8 @@ import 'object_state.dart';
 
 class Paper extends BodyComponent with ContactCallbacks {
    final Vector2 startPosition;
-   Paper(this.startPosition);
+   final Vector2 linearVelocity;
+   Paper(this.startPosition, this.linearVelocity);
   ObjectState state = ObjectState.normal;
 
   @override
@@ -63,7 +64,7 @@ class Paper extends BodyComponent with ContactCallbacks {
 
     return world.createBody(bodyDef)
       ..createFixture(fixtureDef)
-      ..angularVelocity = radians(180)..linearVelocity = Vector2(5, -9);
+      ..linearVelocity = linearVelocity;
   }
 
   @override

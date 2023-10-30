@@ -6,7 +6,8 @@ import 'object_state.dart';
 class Rock extends BodyComponent with ContactCallbacks {
   ObjectState state = ObjectState.normal;
   final Vector2 startPosition;
-  Rock(this.startPosition);
+  final Vector2 linearVelocity;
+  Rock(this.startPosition, this.linearVelocity);
   @override
   Future<void> onLoad() async {
     await super.onLoad();
@@ -59,7 +60,7 @@ class Rock extends BodyComponent with ContactCallbacks {
 
     return world.createBody(bodyDef)
       ..createFixture(fixtureDef)
-      ..angularVelocity = radians(180)..linearVelocity = Vector2(3, -5);
+      ..linearVelocity = linearVelocity;
   }
 
   @override

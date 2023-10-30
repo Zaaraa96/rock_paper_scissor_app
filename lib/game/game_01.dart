@@ -10,7 +10,7 @@ import 'objects/walls.dart';
 
 late SpriteAnimation explosion;
 
-class GameLesson01 extends MyGame with TapCallbacks {
+class Game01 extends MyGame with TapCallbacks {
 
   final scissors = <Scissor>[];
   final papers = <Paper>[];
@@ -22,11 +22,14 @@ class GameLesson01 extends MyGame with TapCallbacks {
   Future<void> onLoad() async {
     super.onLoad();
     for(var i=0; i<5; i++){
-      final s = Scissor(Vector2(worldSize.x / 2,worldSize.y/3));
-      // s.body.linearVelocity = speed;
-      scissors.add(s);
-      papers.add(Paper(Vector2(worldSize.x / 3, worldSize.y/7)));
-      rocks.add(Rock(Vector2(worldSize.x / 4, worldSize.y/2)));
+      scissors.add(Scissor(
+          Vector2(worldSize.x * getRandomDouble(),worldSize.y* getRandomDouble()),
+          Vector2(getRandomSignedInt(), getRandomSignedInt())));
+      papers.add(Paper(Vector2(worldSize.x * getRandomDouble(), worldSize.y* getRandomDouble()),
+          Vector2(getRandomSignedInt(), getRandomSignedInt())));
+      rocks.add(Rock(Vector2(worldSize.x * getRandomDouble(), worldSize.y* getRandomDouble()),
+    Vector2(getRandomSignedInt(), getRandomSignedInt())));
+
     }
     camera.moveTo(worldSize / 2);
 
@@ -45,3 +48,13 @@ class GameLesson01 extends MyGame with TapCallbacks {
   }
 
 }
+
+double getRandomDouble(){
+  return Random.secure().nextDouble();
+}
+
+double getRandomSignedInt(){
+return Random.secure().nextInt(10) -  5; //-5 to 5
+}
+
+
