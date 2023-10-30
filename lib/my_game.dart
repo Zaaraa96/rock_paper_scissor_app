@@ -7,17 +7,17 @@ import 'package:flutter/services.dart';
 import 'package:rock_paper_scissor_app/utils/constants.dart';
 
 // Fixed viewport size
-final screenSize = Vector2(1280, 720);
+late final Vector2 screenSize;
 
 // Scaled viewport size
-final worldSize = Vector2(12.8, 7.2);
+late final Vector2 worldSize;
 
 class MyGame extends Forge2DGame with KeyboardEvents {
   // Keep track of the number of bodies in the world.
-  final totalBodies = TextComponent(position: Vector2(5, 690));
+  // final totalBodies = TextComponent(position: Vector2(5, 690));
 
   // Keep track of the frames per second
-  final fps = FpsTextComponent(position: Vector2(5, 665));
+  // final fps = FpsTextComponent(position: Vector2(5, 665));
 
   // Scale the screenSize by 100 and set the gravity of 15
   MyGame()
@@ -34,15 +34,15 @@ class MyGame extends Forge2DGame with KeyboardEvents {
     // Adds a black background to the backdrop
     camera.backdrop.add(_Background(size: screenSize));
 
-    camera.viewport.add(fps);
-    camera.viewport.add(totalBodies);
+    // camera.viewport.add(fps);
+    // camera.viewport.add(totalBodies);
   }
 
   @override
   void update(double dt) {
     super.update(dt);
     // Updated the number of bodies in the world
-    totalBodies.text = 'Bodies: ${world.physicsWorld.bodies.length}';
+    // totalBodies.text = 'Bodies: ${world.physicsWorld.bodies.length}';
   }
 
   @override

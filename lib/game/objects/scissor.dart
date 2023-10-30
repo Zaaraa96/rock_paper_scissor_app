@@ -1,13 +1,16 @@
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import '../../utils/constants.dart';
+import 'base_game_object.dart';
 import 'object_state.dart';
 import 'rock.dart';
 
-class Scissor extends BodyComponent with ContactCallbacks {
+class Scissor extends BaseGameObject {
+  @override
   final Vector2 startPosition;
+  @override
   final Vector2 linearVelocity;
-  Scissor(this.startPosition, this.linearVelocity);
+  Scissor(this.startPosition, this.linearVelocity) : super(startPosition, linearVelocity);
 
   ObjectState state = ObjectState.normal;
 
@@ -24,47 +27,6 @@ class Scissor extends BodyComponent with ContactCallbacks {
     ));
   }
 
-  @override
-  void update(double dt) {
-    super.update(dt);
-
-    if (state == ObjectState.explode) {
-      world.destroyBody(body);
-      game.world.remove(this);
-    }
-  }
-
-  void hit() {
-    if (state == ObjectState.normal) {
-      state = ObjectState.explode;
-      game.world.add(SpriteAnimationComponent(
-        position: body.position,
-        anchor: Anchor.center,
-        size: componentSize,
-        removeOnFinish: true,
-      ));
-    }
-  }
-
-  @override
-  Body createBody() {
-    final bodyDef = BodyDef(
-      userData: this,
-      position: startPosition,
-      type: BodyType.dynamic,
-    );
-
-    final shape = PolygonShape()..setAsBoxXY(.25, .25);
-
-    final fixtureDef = FixtureDef(shape)
-      ..density = 5
-      ..friction = 0
-      ..restitution = 1;
-
-    return world.createBody(bodyDef)
-      ..createFixture(fixtureDef)
-      ..linearVelocity = linearVelocity;
-  }
 
   @override
   void beginContact(Object other, Contact contact) {
