@@ -7,10 +7,10 @@ import 'package:flutter/services.dart';
 import 'package:rock_paper_scissor_app/utils/constants.dart';
 
 // Fixed viewport size
-late final Vector2 screenSize;
+ final Vector2 screenSize = Vector2(300, 600);
 
 // Scaled viewport size
-late final Vector2 worldSize;
+ final Vector2 worldSize= Vector2(3, 6);
 
 class MyGame extends Forge2DGame with KeyboardEvents {
   // Keep track of the number of bodies in the world.
