@@ -1,6 +1,5 @@
-import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'game/game_01.dart';
 import 'my_game.dart';
 
@@ -14,17 +13,25 @@ void main() {
   );
 }
 
-class  HomeWidget extends StatelessWidget {
+class  HomeWidget extends StatefulWidget {
   const  HomeWidget ({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // Fixed viewport size
-     screenSize = Vector2(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height);
+  State<HomeWidget> createState() => _HomeWidgetState();
+}
 
-// Scaled viewport size
-     worldSize = Vector2(MediaQuery.of(context).size.width/100, MediaQuery.of(context).size.height/100);
-    return  Scaffold(
+class _HomeWidgetState extends State<HomeWidget> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+
+      return  Scaffold(
       body: Center(
         child: ElevatedButton(onPressed: (){
           Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
